@@ -1,0 +1,22 @@
+# Node.js
+backend/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.py
+*.txt
+
+# Temp / scratch scripts
+update_db.js
+inspect_*.js
+inspect_*.py
+copy_*.py
+find_*.py
+search_*.py
+dump_*.py
+gfg_*.py
+
+# Logs
+*.log

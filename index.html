@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GATE Online Mock Test Simulator - Premium Prep Portal</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Prepare for the GATE exam with our highly authentic, premium online mock test simulator. Features official scientific calculator, question palettes, and deep performance analytics.">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for Premium Interface -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- KaTeX for high-performance math equation rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+  <!-- Math.js for robust scientific calculator evaluation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+  <!-- Chart.js for Performance Tracking Graph -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css?v=13">
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- 0. CINEMATIC SPLASH / INTRO SCREEN           -->
+  <!-- ============================================ -->
+  <div id="splash-screen" class="splash-screen">
+    <div class="splash-inner">
+      <div class="splash-emblem">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <div class="splash-title-wrap">
+        <span class="splash-pre-title">GATE Examination Portal</span>
+        <h1 class="splash-brand">Swasti<span>ksha</span></h1>
+        <p class="splash-tagline">Ultimate Exam Simulator &amp; Premium Preparation Suite</p>
+      </div>
+      <div class="splash-divider"><span></span><span></span><span></span></div>
+      <p class="splash-sub">Crafted for serious aspirants. Designed to Exceed.</p>
+      <div class="splash-loader">
+        <div class="splash-loader-bar"></div>
+      </div>
+      <span class="splash-version">v2.0 · GATE CS &amp; DA · 25 Year PYQ Library</span>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- 0b. LOGIN / NAME ENTRY PAGE                  -->
+  <!-- ============================================ -->
+  <div id="login-screen" class="login-screen" style="display:none;">
+    <div class="login-bg-glows">
+      <div class="login-glow lg-1"></div>
+      <div class="login-glow lg-2"></div>
+    </div>
+    <div class="login-card">
+      <div class="login-card-top">
+        <div class="login-emblem">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h1 class="login-title">Swasti<span>ksha</span></h1>
+        <p class="login-subtitle">Ultimate Exam Simulator</p>
+      </div>
+
+      <div class="login-card-body">
+        <h2 class="login-heading">Welcome, Aspirant</h2>
+        <p class="login-description">Enter your name to personalise your exam experience and begin your GATE preparation journey.</p>
+
+        <div class="login-form">
+          <div class="login-input-group">
+            <label for="login-name-input"><i class="fa-solid fa-user"></i> Your Name</label>
+            <input
+              type="text"
+              id="login-name-input"
+              placeholder="e.g. Shruti Sharma"
+              autocomplete="off"
+              maxlength="40"
+            >
+          </div>
+          <button id="login-submit-btn" class="login-btn" type="button">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            Begin My GATE Journey
+          </button>
+          <p class="login-note"><i class="fa-solid fa-lock"></i> No account needed. Your data stays on your device.</p>
+        </div>
+      </div>
+
+      <div class="login-card-footer">
+        <span>GATE CS · GATE DA · 1,750+ PYQs · Prep Solver</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Ambient Glows -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="app-container" id="main-app" style="display:none; height: calc(100vh - 32px); min-height: 0; box-sizing: border-box; padding-bottom: 0;">
+
+    <!-- 1. DASHBOARD VIEW -->
+    <section id="dashboard-view" class="view-panel active" style="flex: 1; display: flex; flex-direction: column; min-height: 0; height: 100%;">
+      <header class="dashboard-header" style="margin-bottom: 16px;">
+        <div class="brand">
+          <div class="logo-box">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div class="brand-text">
+            <h1>Swasti<span>ksha</span></h1>
+            <p>Ultimate Exam Simulator</p>
+          </div>
+        </div>
+        <div class="header-controls" style="display: flex; align-items: center; gap: 16px;">
+          <div class="theme-switcher">
+            <select id="theme-selector" class="theme-select-btn">
+              <option value="dark">🌙 Dark Slate</option>
+              <option value="night">🌑 Pitch Black</option>
+              <option value="light">☀️ Light Mode</option>
+            </select>
+          </div>
+          <button id="open-performance-modal-btn" class="btn btn-secondary-outline" style="padding: 6px 12px; display: flex; align-items: center; gap: 8px;" title="View Performance Graph">
+            <i class="fa-solid fa-chart-line text-purple"></i>
+          </button>
+          <div class="user-pill">
+            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=GATEPrep" alt="User Avatar" class="avatar">
+            <div class="user-info">
+              <span class="user-name" id="user-name-pill">GATE Aspirant</span>
+              <span class="user-status"><i class="fa-solid fa-circle text-emerald"></i> Ready to Excel</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-grid" style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; min-height: 0; margin-bottom: 8px;">
+        <!-- Left: Quick Stats, Setup & Subject Selection -->
+        <div class="dashboard-left" style="display: flex; flex-direction: column; gap: 16px; height: 100%; min-height: 0;">
+          <!-- Welcome & Performance Summary Card -->
+          <div class="glass-card welcome-card" id="welcome-card" style="padding: 24px 24px; flex: 0.7; display: flex; flex-direction: column; justify-content: center; min-height: 0;">
+            <h2 style="font-size: 24px; margin-bottom: 6px;">Welcome back, <span id="candidate-name-display">Aspirant</span>!</h2>
+            <p style="margin-bottom: 0; font-size: 16px; line-height: 1.5;">Empower your GATE preparation with real-time feedback, detailed performance insights, and a simulation matching the exact TCS iON examination feel.</p>
+          </div>
+          
+          <!-- Test Setup Options Card (Always visible at the bottom of the left column) -->
+          <div class="glass-card setup-card" id="setup-card" style="padding: 36px 24px; flex: 1.5; display: flex; flex-direction: column; min-height: 0; justify-content: space-between; gap: 16px;">
+            <h3 style="margin-bottom: 0px; font-size: 18px; display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-sliders"></i> Test Setup Options</h3>
+
+            <div class="form-group" style="width: 100%; margin: 0;">
+              <label for="test-stream-input" style="margin-bottom: 4px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">GATE Stream / Syllabus:</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-graduation-cap" style="left: 14px; font-size: 14px;"></i>
+                <select id="test-stream-input" style="font-size: 16px; padding: 10px 12px 10px 38px; height: 42px;">
+                  <option value="CS" selected>Computer Science &amp; IT (CS)</option>
+                  <option value="DS">Data Science &amp; AI (DS/DA)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" style="width: 100%; margin: 0;">
+              <label for="test-duration-input" style="margin-bottom: 4px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Exam Mode / Duration:</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-clock" style="left: 14px; font-size: 14px;"></i>
+                <select id="test-duration-input" style="font-size: 16px; padding: 10px 12px 10px 38px; height: 42px;">
+                  <option value="180" selected>180 Minutes (Full-Length Mock Test)</option>
+                  <option value="60">Subject-wise Mock Test</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Dynamic Workspace Area -->
+        <div class="dashboard-right" style="display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden;">
+
+          <!-- PANEL 1: GATE Mock Papers By Year (Visible by default) -->
+          <div class="glass-card test-selection-card" id="panel-pyq-papers" style="display: flex; flex-direction: column; height: 100%; width: 100%; padding: 16px;">
+            <h3 style="margin-bottom: 12px; font-size: 18px; display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-file-invoice"></i> GATE Previous Year Papers (PYQ)</h3>
+            <div class="test-cards-list" style="flex: 1; display: flex; flex-direction: column;">
+              <div class="test-card active" style="grid-template-columns: 1fr; border: none; padding: 0; background: transparent; margin-top: 4px; width: 100%; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
+                   <!-- Year Dropdown Selection (Full width on top) -->
+                <div class="form-group" style="width: 100%; margin: 0;">
+                  <label for="test-year-input" style="margin-bottom: 4px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Select Exam Year:</label>
+                  <div class="input-wrapper">
+                    <i class="fa-solid fa-calendar-days" style="left: 14px; font-size: 14px;"></i>
+                    <select id="test-year-input" style="font-size: 16px; padding: 10px 12px 10px 38px; height: 42px;">
+                      <!-- Populated dynamically in app.js -->
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Dynamic Syllabus Description Box (Expands to fill remaining vertical height) -->
+                <div class="syllabus-info-box" id="syllabus-description" style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass-border); padding: 8px 14px; border-radius: var(--border-radius-sm); font-size: 16px; line-height: 1.5; flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; margin-bottom: 0;">
+                  <!-- Dynamically populated in app.js -->
+                </div>
+
+                <!-- Virtual Calculator Launcher Box (At the bottom of syllabus box) -->
+                <div class="stat-bubble" id="dashboard-calc-btn" style="cursor: pointer; width: 100%; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.02); justify-content: center; height: 42px; border-radius: var(--border-radius-sm); margin: 0; padding: 0 16px; display: flex; align-items: center; gap: 8px; transition: var(--transition-smooth);" title="Open Virtual Calculator">
+                  <i class="fa-solid fa-calculator" style="color: var(--primary); font-size: 16px; opacity: 0.8;"></i>
+                  <span style="font-size: 16px; font-weight: 600; color: var(--text-primary);">Launch Scientific Virtual Calculator</span>
+                </div>
+
+                <button class="btn btn-primary start-instructions-btn w-100" id="configure-paper-btn" style="height: 42px; justify-content: center; align-items: center; white-space: nowrap; margin: 0; width: 100%; font-size: 16px; padding: 0 16px;">
+                  Configure Full Paper Exam <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL 2: Dynamic Subject Selection Card (Visible in 60 min mode when no subject is selected) -->
+          <div class="glass-card test-selection-card" id="subject-selection-container" style="display: none; height: 100%; flex-direction: column; width: 100%;">
+            <div class="topics-card-header" style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <h3 style="margin-bottom: 4px;"><i class="fa-solid fa-list-check"></i> Select Practice Subject</h3>
+              <p style="font-size: 15px; color: var(--text-secondary); margin: 0;">Choose a subject to explore topic-wise exam links.</p>
+            </div>
+            <div class="topic-explorer-grid scrollable-area" id="subject-selection-list" style="flex: 1; max-height: 480px;">
+              <!-- Dynamically populated in app.js based on GATE stream (CS or DS/DA) -->
+            </div>
+          </div>
+
+          <!-- PANEL 3: Dynamic Topic Selection Card (Shown on the right side when a subject is clicked) -->
+          <div class="glass-card test-selection-card" id="topics-selection-container" style="display: none; height: 100%; flex-direction: column; width: 100%;">
+            <div class="topics-card-header" style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; width: 100%;">
+              <div>
+                <h3 style="margin-bottom: 4px;"><i class="fa-solid fa-list-ol"></i> <span id="selected-subject-label-left" class="text-purple">DBMS</span> Topics</h3>
+                <p style="font-size: 15px; color: var(--text-secondary); margin: 0;">Select a topic to launch a focused 1-Hour practice test.</p>
+              </div>
+              <button id="back-to-subjects-btn" class="btn btn-secondary-outline" style="padding: 6px 12px; font-size: 11px; display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.02); border-color: var(--glass-border); color: var(--text-secondary); cursor: pointer; transition: var(--transition-smooth);">
+                <i class="fa-solid fa-arrow-left"></i> Back to Subjects
+              </button>
+            </div>
+            <div id="topics-selection-list" class="topic-explorer-grid scrollable-area" style="flex: 1; max-height: 480px;">
+              <!-- Dynamically populated in app.js -->
+            </div>
+          </div>
+
+          <!-- PANEL 3: Subject Selection Placeholder Notice (Shown in Subject mock mode when no subject is selected) -->
+          <div class="glass-card test-selection-card" id="panel-subject-placeholder" style="display: none; height: 100%; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; width: 100%;">
+            <div class="placeholder-icon" style="font-size: 48px; color: var(--primary); margin-bottom: 20px; text-shadow: var(--shadow-neon);">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h3 style="margin-bottom: 8px;">Subject-wise Mock Exams</h3>
+            <p style="color: var(--text-secondary); max-width: 400px; font-size: 13px; line-height: 1.6;">
+              Please select a preparation subject from the left panel to explore all exam syllabus topics and launch your focused 1-Hour practice tests.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. EXAM INSTRUCTIONS VIEW -->
+    <section id="guidelines-view" class="view-panel">
+      <div class="glass-card instructions-card">
+        <div class="instructions-header">
+          <h2><i class="fa-solid fa-circle-info"></i> GATE Online Examination Instructions</h2>
+          <button class="btn btn-secondary back-to-dashboard-btn"><i class="fa-solid fa-arrow-left"></i> Dashboard</button>
+        </div>
+
+        <div class="instructions-body">
+          <h3>General Instructions</h3>
+          <ul>
+            <li id="instruction-timer-point">The clock will be set at the server. The countdown timer at the top right of the screen will display the remaining time available for you to complete the examination.</li>
+            <li id="instruction-auto-submit-point">When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</li>
+            <li>The Question Palette displayed on the right side of the screen will show the status of each question using one of the following symbols:
+              <div class="status-legend-grid">
+                <div class="legend-item"><span class="legend-circle not-visited">1</span> Not Visited</div>
+                <div class="legend-item"><span class="legend-circle not-answered">2</span> Not Answered</div>
+                <div class="legend-item"><span class="legend-circle answered">3</span> Answered</div>
+                <div class="legend-item"><span class="legend-circle marked">4</span> Marked for Review</div>
+                <div class="legend-item"><span class="legend-circle marked-answered">5</span> Answered & Marked for Review (will be considered for evaluation)</div>
+              </div>
+            </li>
+          </ul>
+
+          <h3>Question Types & Marking Scheme</h3>
+          <div class="marking-table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Question Type</th>
+                  <th>Description</th>
+                  <th>Correct Response</th>
+                  <th>Incorrect Response</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>MCQ</strong> (Multiple Choice)</td>
+                  <td>Only one option is correct out of four.</td>
+                  <td>+1 or +2 Marks</td>
+                  <td>-1/3 or -2/3 Marks (Negative)</td>
+                </tr>
+                <tr>
+                  <td><strong>MSQ</strong> (Multiple Select)</td>
+                  <td>One or more options can be correct. Must select all correct and no incorrect options. No partial marking.</td>
+                  <td>+1 or +2 Marks</td>
+                  <td>0 Marks (No negative marking)</td>
+                </tr>
+                <tr>
+                  <td><strong>NAT</strong> (Numerical Answer)</td>
+                  <td>Enter a numerical value using the virtual keypad.</td>
+                  <td>+1 or +2 Marks</td>
+                  <td>0 Marks (No negative marking)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="declaration-checkbox">
+            <input type="checkbox" id="declaration-check">
+            <label for="declaration-check">
+              I have read and understood the instructions. All computer hardware allotted to me is in proper working condition. I agree to abide by the rules of the examination.
+            </label>
+          </div>
+        </div>
+
+        <div class="instructions-footer">
+          <button id="start-test-btn" class="btn btn-success" disabled>
+            I am ready to begin <i class="fa-solid fa-gamepad"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. LIVE EXAM ENVIRONMENT VIEW -->
+    <section id="exam-view" class="view-panel">
+      <!-- Exam Header -->
+      <header class="exam-header">
+        <div class="exam-title-box">
+          <span class="exam-tag">GATE Online Mock Exam</span>
+          <h2 id="active-test-title">GATE CS & IT - Integrated Practice Mock 1</h2>
+        </div>
+
+        <div class="exam-header-right">
+          <!-- Scientific Calculator Trigger -->
+          <button id="calc-toggle-btn" class="btn btn-calc">
+            <i class="fa-solid fa-calculator"></i> Scientific Calculator
+          </button>
+          
+          <!-- Countdown Timer (Full-Length 180 min) -->
+          <div class="timer-box" id="countdown-box">
+            <i class="fa-solid fa-clock"></i>
+            <div>
+              <span class="timer-label">Time Remaining</span>
+              <span id="exam-countdown" class="timer-digits">00:00:00</span>
+            </div>
+          </div>
+
+          <!-- Stopwatch (Subject-wise mode only) -->
+          <div class="stopwatch-box" id="stopwatch-box" style="display:none;">
+            <div class="stopwatch-top">
+              <i class="fa-solid fa-stopwatch"></i>
+              <div>
+                <span class="timer-label">Stopwatch</span>
+                <span id="stopwatch-display" class="timer-digits">00:00:00</span>
+              </div>
+            </div>
+            <div class="stopwatch-controls">
+              <button id="sw-start-btn" class="sw-btn" aria-label="Start" title="Start">
+                <i class="fa-solid fa-play"></i> Start
+              </button>
+              <button id="sw-pause-btn" class="sw-btn" aria-label="Pause" title="Pause" disabled>
+                <i class="fa-solid fa-pause"></i> Pause
+              </button>
+              <button id="sw-reset-btn" class="sw-btn" aria-label="Reset" title="Reset">
+                <i class="fa-solid fa-rotate-left"></i> Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Section Tabs -->
+      <nav class="section-tabs">
+        <button class="section-tab active" data-section="GA">
+          General Aptitude (GA) <span class="badge" id="section-ga-count">3 Qs</span>
+        </button>
+        <button class="section-tab" data-section="CS">
+          Computer Science (CS) <span class="badge" id="section-cs-count">7 Qs</span>
+        </button>
+      </nav>
+
+      <!-- Exam Arena Body -->
+      <div class="exam-arena-body">
+        <!-- Left: Question Portal -->
+        <div class="question-portal">
+          <div class="question-meta-row">
+            <span class="question-number-tag">Question <span id="q-number">1</span></span>
+            <div class="question-specs">
+              <span class="spec-badge type-badge" id="q-type">MCQ</span>
+              <span class="spec-badge marks-badge">Marks: +<span id="q-marks">1</span> | Negative: <span id="q-negative">0</span></span>
+            </div>
+          </div>
+
+          <div class="question-container scrollable-area">
+            <!-- Question Content -->
+            <div id="question-text" class="question-text-content">
+              <!-- Populated by JS -->
+            </div>
+
+            <!-- Options/Answers Input Container -->
+            <div id="options-container" class="options-container">
+              <!-- Populated dynamically based on type -->
+            </div>
+          </div>
+
+          <!-- Bottom Action Dock -->
+          <footer class="action-dock">
+            <div class="dock-left">
+              <button id="clear-response-btn" class="btn btn-secondary-outline">Clear Response</button>
+              <button id="mark-review-btn" class="btn btn-purple">Mark for Review & Next</button>
+            </div>
+            <div class="dock-right">
+              <button id="prev-question-btn" class="btn btn-secondary"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+              <button id="save-next-btn" class="btn btn-primary">Save & Next <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </footer>
+        </div>
+
+        <!-- Right: TCS iON Question Palette & Info -->
+        <aside class="sidebar-palette">
+          <div class="candidate-panel">
+            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=GATEPrep" alt="Candidate Photo" class="candidate-photo">
+            <div class="candidate-details">
+              <h4 id="candidate-display-name">Candidate</h4>
+              <p>Candidate ID: <span class="code-font">GATE2026</span></p>
+            </div>
+          </div>
+
+          <!-- Question Palette Box -->
+          <div class="palette-box">
+            <h3>Question Palette</h3>
+            <div class="question-grid scrollable-area" id="palette-grid">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Live Status Summary -->
+          <div class="status-summary">
+            <h3>Summary Status</h3>
+            <div class="status-summary-grid">
+              <div class="summary-item">
+                <span class="status-badge answered" id="stat-answered">0</span>
+                <span>Answered</span>
+              </div>
+              <div class="summary-item">
+                <span class="status-badge not-answered" id="stat-not-answered">0</span>
+                <span>Not Answered</span>
+              </div>
+              <div class="summary-item">
+                <span class="status-badge not-visited" id="stat-not-visited">10</span>
+                <span>Not Visited</span>
+              </div>
+              <div class="summary-item">
+                <span class="status-badge marked" id="stat-marked">0</span>
+                <span>Marked for Review</span>
+              </div>
+              <div class="summary-item">
+                <span class="status-badge marked-answered" id="stat-marked-answered">0</span>
+                <span>Ans & Marked for Rev</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Action -->
+          <div class="submit-action-box">
+            <button id="submit-exam-btn" class="btn btn-danger w-100">
+              <i class="fa-solid fa-circle-check"></i> Submit Test
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 4. ANALYTICS & RESULTS VIEW -->
+    <section id="results-view" class="view-panel">
+      <header class="results-header">
+        <div>
+          <span class="exam-tag text-emerald">Evaluation Complete</span>
+          <h2>Your GATE Performance Analytics</h2>
+        </div>
+        <button id="exit-to-dashboard-btn" class="btn btn-secondary">
+          <i class="fa-solid fa-home"></i> Back to Dashboard
+        </button>
+      </header>
+
+      <!-- Main Results Grid -->
+      <div class="results-grid">
+        <!-- Top Stats Row -->
+        <div class="glass-card stat-card score-hero-card">
+          <div class="score-radial">
+            <svg class="radial-svg" viewBox="0 0 120 120">
+              <circle class="radial-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="radial-progress" id="results-radial-bar" cx="60" cy="60" r="50" style="stroke-dashoffset: 314;"></circle>
+            </svg>
+            <div class="score-center">
+              <span id="results-score-obtained" class="obtained">0.00</span>
+              <span class="divider">/</span>
+              <span id="results-score-total" class="total">17.00</span>
+            </div>
+          </div>
+          <div class="score-briefing">
+            <h3>Final Score</h3>
+            <p>Congratulations! You scored <strong id="results-marks-text">0</strong> marks. Below is a detailed breakdown of your metrics.</p>
+          </div>
+        </div>
+
+        <div class="results-metrics-grid">
+          <div class="glass-card metric-item-box">
+            <div class="metric-icon bg-emerald-light"><i class="fa-solid fa-circle-check text-emerald"></i></div>
+            <div class="metric-content">
+              <h4 id="results-correct-count">0</h4>
+              <p>Correct Answers</p>
+            </div>
+          </div>
+          <div class="glass-card metric-item-box">
+            <div class="metric-icon bg-danger-light"><i class="fa-solid fa-circle-xmark text-danger"></i></div>
+            <div class="metric-content">
+              <h4 id="results-wrong-count">0</h4>
+              <p>Incorrect Answers</p>
+            </div>
+          </div>
+          <div class="glass-card metric-item-box">
+            <div class="metric-icon bg-secondary-light"><i class="fa-solid fa-eye-slash"></i></div>
+            <div class="metric-content">
+              <h4 id="results-unattempted-count">10</h4>
+              <p>Unattempted</p>
+            </div>
+          </div>
+          <div class="glass-card metric-item-box">
+            <div class="metric-icon bg-purple-light"><i class="fa-solid fa-bullseye text-purple"></i></div>
+            <div class="metric-content">
+              <h4 id="results-accuracy-pct">0%</h4>
+              <p>Test Accuracy</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance Graph Card (Results View) -->
+        <div class="glass-card performance-card" id="performance-card" style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="margin: 0; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-chart-line text-purple"></i> Your Historical Performance
+            </h3>
+          </div>
+          <div style="position: relative; height: 250px; width: 100%;">
+            <canvas id="resultsPerformanceChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Solutions & Explanations Panel -->
+      <div class="glass-card solutions-card">
+        <h3><i class="fa-solid fa-file-invoice text-purple"></i> Detailed Answer Key & Explanations</h3>
+        <p class="solutions-subtitle">Review every question to audit your approach, verify mathematical options, and read clear conceptual explanations.</p>
+        
+        <div class="solutions-list" id="solutions-container-list">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 5. FLOATING DRAGGABLE SCIENTIFIC CALCULATOR -->
+  <div id="calculator-modal" class="calculator-window">
+    <div class="calculator-titlebar" id="calc-titlebar">
+      <span><i class="fa-solid fa-calculator"></i> GATE Virtual Calculator</span>
+      <button id="calc-close-btn" class="calc-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Calculator Display Screen -->
+    <div class="calc-display-section">
+      <input type="text" id="calc-history" readonly placeholder="" class="calc-history-box">
+      <input type="text" id="calc-screen" readonly value="0" class="calc-screen-box">
+    </div>
+
+    <!-- Calculator Keys Grid -->
+    <div class="calc-keys-container">
+      <div class="calc-mode-row">
+        <label class="calc-radio"><input type="radio" name="angleMode" value="deg" checked> Deg</label>
+        <label class="calc-radio"><input type="radio" name="angleMode" value="rad"> Rad</label>
+      </div>
+      <!-- Special operations / Trigo / scientific row -->
+      <div class="calc-keypad-scientific">
+        <!-- Memory operations -->
+        <button class="calc-btn op-spec" data-action="mc">MC</button>
+        <button class="calc-btn op-spec" data-action="mr">MR</button>
+        <button class="calc-btn op-spec" data-action="ms">MS</button>
+        <button class="calc-btn op-spec" data-action="m+">M+</button>
+        <button class="calc-btn op-spec" data-action="m-">M-</button>
+
+        <!-- Scientific functions -->
+        <button class="calc-btn func" data-action="sin">sin</button>
+        <button class="calc-btn func" data-action="cos">cos</button>
+        <button class="calc-btn func" data-action="tan">tan</button>
+        <button class="calc-btn func" data-action="asin">asin</button>
+        <button class="calc-btn func" data-action="acos">acos</button>
+
+        <button class="calc-btn func" data-action="atan">atan</button>
+        <button class="calc-btn func" data-action="log">log</button>
+        <button class="calc-btn func" data-action="ln">ln</button>
+        <button class="calc-btn func" data-action="sqrt">√</button>
+        <button class="calc-btn func" data-action="cbrt">³√</button>
+
+        <button class="calc-btn func" data-action="square">x²</button>
+        <button class="calc-btn func" data-action="cube">x³</button>
+        <button class="calc-btn func" data-action="pow">xʸ</button>
+        <button class="calc-btn func" data-action="inv">1/x</button>
+        <button class="calc-btn func" data-action="fact">n!</button>
+
+        <button class="calc-btn const" data-action="pi">π</button>
+        <button class="calc-btn const" data-action="e">e</button>
+        <button class="calc-btn op" data-action="bracket-open">(</button>
+        <button class="calc-btn op" data-action="bracket-close">)</button>
+        <button class="calc-btn op" data-action="mod">mod</button>
+      </div>
+
+      <!-- Main keyboard row -->
+      <div class="calc-keypad-standard">
+        <button class="calc-btn num" data-val="7">7</button>
+        <button class="calc-btn num" data-val="8">8</button>
+        <button class="calc-btn num" data-val="9">9</button>
+        <button class="calc-btn clear" data-action="backspace"><i class="fa-solid fa-delete-left"></i></button>
+        <button class="calc-btn clear" data-action="clear">C</button>
+
+        <button class="calc-btn num" data-val="4">4</button>
+        <button class="calc-btn num" data-val="5">5</button>
+        <button class="calc-btn num" data-val="6">6</button>
+        <button class="calc-btn op" data-action="divide">/</button>
+        <button class="calc-btn op" data-action="multiply">*</button>
+
+        <button class="calc-btn num" data-val="1">1</button>
+        <button class="calc-btn num" data-val="2">2</button>
+        <button class="calc-btn num" data-val="3">3</button>
+        <button class="calc-btn op" data-action="subtract">-</button>
+        <button class="calc-btn op" data-action="add">+</button>
+
+        <button class="calc-btn num" data-val="0">0</button>
+        <button class="calc-btn num" data-val=".">.</button>
+        <button class="calc-btn func" data-action="sign">±</button>
+        <button class="calc-btn op" data-action="comma">,</button>
+        <button class="calc-btn equal" data-action="calculate">=</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dialog / Custom Alert Box for Submissions -->
+  <div id="custom-confirm-modal" class="modal-overlay">
+    <div class="glass-card confirm-modal-box">
+      <h3>Submit Your GATE Exam?</h3>
+      <p id="confirm-modal-message">Are you sure you want to submit the mock exam? You still have remaining time.</p>
+      
+      <div class="modal-summary-panel">
+        <div class="summary-stat-pill"><span id="confirm-answered">0</span> Answered</div>
+        <div class="summary-stat-pill"><span id="confirm-review">0</span> Review</div>
+        <div class="summary-stat-pill"><span id="confirm-unattempted">10</span> Unattempted</div>
+      </div>
+      
+      <div class="confirm-modal-actions">
+        <button id="confirm-cancel-btn" class="btn btn-secondary">Resume Test</button>
+        <button id="confirm-ok-btn" class="btn btn-danger">Yes, Submit Exam</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. PERFORMANCE MODAL (Top Nav) -->
+  <div id="nav-performance-modal" class="modal-overlay">
+    <div class="modal-content glass-card" style="width: 100%; max-width: 700px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="margin: 0; font-size: 18px; display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-chart-line text-purple"></i> Your Performance
+        </h3>
+        <button id="close-performance-modal-btn" class="btn btn-secondary-outline" style="padding: 4px 8px; border: none;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div style="position: relative; height: 300px; width: 100%; margin-bottom: 16px;">
+        <canvas id="modalPerformanceChart"></canvas>
+      </div>
+      <div style="display: flex; justify-content: flex-end; border-top: 1px solid var(--glass-border); padding-top: 16px;">
+        <button id="reset-data-btn" class="btn btn-danger-outline" style="font-size: 13px;">Reset All Data</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="questions.js?v=8"></script>
+  <script src="app.js?v=8"></script>
+</body>
+</html>
