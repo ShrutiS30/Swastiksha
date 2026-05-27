@@ -1,22 +1,15 @@
-# Node.js
+# Node.js dependencies
 backend/node_modules/
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
+# Environment secrets — copy .env.example and fill in your own
+backend/.env
+
+# Python scripts (dev/extraction tools)
 *.py
 *.txt
+*.pyc
+__pycache__/
 
-# Temp / scratch scripts
+# Scratch / dev-only files
 update_db.js
 inspect_*.js
-inspect_*.py
-copy_*.py
-find_*.py
-search_*.py
-dump_*.py
-gfg_*.py
-
-# Logs
-*.log
