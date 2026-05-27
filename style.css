@@ -3473,12 +3473,44 @@ code {
 @media (max-width: 1024px) {
   .app-container {
     padding: 16px 16px 8px 16px;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
   }
   .dashboard-grid {
-    height: auto;
-    min-height: auto;
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    min-height: auto !important;
+    gap: 16px !important;
+  }
+  #dashboard-view {
+    height: auto !important;
+  }
+  .dashboard-left, .dashboard-right {
+    height: auto !important;
+    min-height: auto !important;
+  }
+  .welcome-card {
+    padding: 20px !important;
+    flex: none !important;
+  }
+  .setup-card {
+    padding: 24px 20px !important;
+    flex: none !important;
+  }
+  .test-selection-card {
+    height: auto !important;
+    min-height: 350px !important;
+  }
+  /* Ensure calculator launcher is comfortable for tapping */
+  #dashboard-calc-btn {
+    height: 48px !important;
+  }
+  #configure-paper-btn {
+    height: 48px !important;
   }
 }
+
 
 @media (max-width: 768px) {
   /* Dashboard Header Mobile Adjustments */
@@ -3491,10 +3523,17 @@ code {
   .brand {
     justify-content: center;
   }
+  .header-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px !important;
+  }
   .user-pill {
     justify-content: center;
     align-self: center;
+    padding: 6px 12px !important;
   }
+
   
   /* Exam View Header */
   .exam-header {
