@@ -5,43 +5,43 @@
 <img src="https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-222?style=for-the-badge&logo=github&logoColor=white" />
 <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" />
 
-# 🎓 Swastiksha — GATE Exam Simulator
+# Swastiksha — GATE Exam Simulator
 
 ### *Ultimate Premium Preparation Portal for GATE CS & DA*
 
-**[🚀 Live Demo](https://ShrutiS30.github.io/Swastiksha/)** &nbsp;|&nbsp; **[📂 Repository](https://github.com/ShrutiS30/Swastiksha)**
+**[Live Demo](https://ShrutiS30.github.io/Swastiksha/)** &nbsp;|&nbsp; **[ Repository](https://github.com/ShrutiS30/Swastiksha)**
 
 </div>
 
 ---
 
-## ✨ What is Swastiksha?
+## What is Swastiksha?
 
 **Swastiksha** is a fully authentic, browser-based GATE examination simulator built for serious aspirants. It replicates the exact TCS iON exam environment used in GATE — complete with a virtual scientific calculator, timed sessions, section-wise navigation, question palettes, negative marking, and deep performance analytics.
 
-> 🧠 **1,700+ questions** across **25 years** of GATE CS & DA Previous Year Papers — all in one place, completely free.
+>  **1,700+ questions** across **25 years** of GATE CS & DA Previous Year Papers — all in one place, completely free.
 
 ---
 
-## 🖥️ Features
+## Features
 
 | Feature | Description |
 |---|---|
-| 🏛️ **Authentic GATE Interface** | Pixel-perfect replication of the official TCS iON exam UI |
-| 📚 **25-Year PYQ Library** | GATE CS (2000–2025) & DA (2024–2025) question bank |
-| 🧮 **Scientific Calculator** | Built-in virtual calculator matching GATE specifications |
-| ⏱️ **Timed Mock Tests** | 180-min full-length or 60-min subject-wise practice modes |
-| 📊 **Performance Analytics** | Section-wise score breakdown, accuracy charts with Chart.js |
-| 🎨 **3 Premium Themes** | Dark Slate, Pitch Black, and Light Mode |
-| 📐 **KaTeX Math Rendering** | LaTeX equations rendered beautifully in real-time |
-| 📱 **Fully Responsive** | Works perfectly on desktop, tablet, and mobile |
-| 🗂️ **Question Palette** | Mark for review, attempted, skipped — full navigation control |
-| 🏷️ **MSQ / NAT / MCQ** | All GATE question types supported with correct scoring rules |
-| 💡 **Answer Key** | Official answer keys applied for all available years |
+|  **Authentic GATE Interface** | Pixel-perfect replication of the official TCS iON exam UI |
+|  **25-Year PYQ Library** | GATE CS (2000–2025) & DA (2024–2025) question bank |
+|  **Scientific Calculator** | Built-in virtual calculator matching GATE specifications |
+|  **Timed Mock Tests** | 180-min full-length or 60-min subject-wise practice modes |
+|  **Performance Analytics** | Section-wise score breakdown, accuracy charts with Chart.js |
+|  **3 Premium Themes** | Dark Slate, Pitch Black, and Light Mode |
+|  **KaTeX Math Rendering** | LaTeX equations rendered beautifully in real-time |
+|  **Fully Responsive** | Works perfectly on desktop, tablet, and mobile |
+|  **Question Palette** | Mark for review, attempted, skipped — full navigation control |
+|  **MSQ / NAT / MCQ** | All GATE question types supported with correct scoring rules |
+|  **Answer Key** | Official answer keys applied for all available years |
 
 ---
 
-## 🗂️ Project Structure
+##  Project Structure
 
 ```
 Swastiksha/
@@ -60,7 +60,7 @@ Swastiksha/
 
 ---
 
-## 🚀 Running Locally
+##  Running Locally
 
 ### Option A — Open directly (no install needed)
 Just double-click `index.html` — the simulator runs entirely in your browser with zero dependencies.
@@ -77,7 +77,7 @@ Then open `http://localhost:8080`.
 
 ---
 
-## 🤖 Backend (Optional AI Tutor)
+##  Backend (Optional AI Tutor)
 
 The `backend/` folder contains an Express.js proxy for a Gemini AI tutor feature.
 
@@ -88,11 +88,11 @@ npm install
 npm start                     # Runs on http://localhost:5000
 ```
 
-> ℹ️ The main exam simulator works **100% without the backend**. The backend only powers the optional AI explanation feature.
+>  The main exam simulator works **100% without the backend**. The backend only powers the optional AI explanation feature.
 
 ---
 
-## 📦 Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -107,17 +107,17 @@ npm start                     # Runs on http://localhost:5000
 
 ---
 
-## 📖 GATE Streams Covered
+##  GATE Streams Covered
 
-### 💻 Computer Science & IT (CS)
+###  Computer Science & IT (CS)
 `2000 · 2001 · 2002 · 2003 · 2004 · 2005 · 2006 · 2007 · 2008 · 2009 · 2010 · 2011 · 2012 · 2013 · 2014 · 2015 · 2016 · 2017 · 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025`
 
-### 📊 Data Science & AI (DA)
+###  Data Science & AI (DA)
 `2024 · 2025`
 
 ---
 
-## 🎯 How to Use
+##  How to Use
 
 1. **Open the portal** → You're greeted with a cinematic splash screen
 2. **Enter your name** → Personalised welcome & session tracking
@@ -129,7 +129,7 @@ npm start                     # Runs on http://localhost:5000
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 > *Open the live demo to experience the full cinematic interface!*
 
@@ -137,7 +137,7 @@ npm start                     # Runs on http://localhost:5000
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Pull requests are welcome! If you find a question with an incorrect answer or want to add more years:
 
@@ -148,7 +148,7 @@ Pull requests are welcome! If you find a question with an incorrect answer or wa
 
 ---
 
-## 📜 License
+##  License
 
 This project is licensed under the **MIT License** — free to use, modify, and distribute.
 
